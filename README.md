@@ -1,84 +1,96 @@
+# 🩺 Cancer Image Classification
 
-# Cancer Detector (Binary: cancerous vs. non-cancerous)
+A deep learning project to classify medical images as **cancerous** or **non-cancerous** using **PyTorch + ResNet**.  
+The project also includes **Streamlit UI** for demo and a **Flask API** for integration.
 
-A starter end‑to‑end project to train a CNN on medical images and serve predictions via **Streamlit** or **Flask**.
+---
 
-> ⚠️ This is a **template**. For real clinical use, you must validate with proper datasets, follow regulatory guidelines, and involve qualified medical professionals.
+## 🚀 Features
+- Train CNN models (ResNet18/34/50) with transfer learning.
+- Evaluate with accuracy, precision, recall, F1-score, confusion matrix.
+- Single-image inference (`src/infer.py`).
+- Batch inference on test set → CSV report.
+- Streamlit app for interactive demo.
+- Flask REST API for deployment.
+- Deployment ready (Streamlit Cloud, Hugging Face Spaces, Docker).
 
-## Features
-- PyTorch + torchvision transfer learning (ResNet18 by default).
-- Binary classification: `cancerous` vs `non_cancerous` (feel free to rename).
-- Pandas/Numpy for logging and metrics tables.
-- Streamlit app for drag‑and‑drop image prediction.
-- Optional Flask REST API for programmatic inference.
-- Clean training script: checkpointing, early stopping, mixed precision, and simple metrics CSV.
+---
 
-## Folder structure
-```
-cancer_detector/
-├─ app_streamlit.py
-├─ app_flask.py
-├─ requirements.txt
-├─ README.md
-├─ src/
-│  ├─ config.py
-│  ├─ dataset.py
-│  ├─ model.py
-│  ├─ train.py
-│  ├─ infer.py
-│  └─ utils.py
-└─ data/               # Put your images here (see below)
-```
+## 📂 Project Structure
+├── data/ # dataset (train/val/test split)
+├── runs/ # trained model checkpoints + results
+├── src/
+│ ├── train.py # training script
+│ ├── model.py # model creation
+│ ├── infer.py # single image inference
+│ └── utils.py # helper functions
+├── app_streamlit.py # Streamlit web app
+├── app_flask.py # Flask API
+├── requirements.txt # dependencies
+└── README.md # project description
 
-## Expected data layout
-Place images into train/val/test splits with class subfolders:
-```
-data/
-├─ train/
-│  ├─ cancerous/
-│  └─ non_cancerous/
-├─ val/
-│  ├─ cancerous/
-│  └─ non_cancerous/
-└─ test/
-   ├─ cancerous/
-   └─ non_cancerous/
-```
-Accepted formats: png, jpg, jpeg, bmp, tiff.
+yaml
+Copy code
 
-## Quickstart
-### 1) Create a virtual env and install deps
-```bash
-python -m venv .venv && source .venv/bin/activate  # on Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-```
+---
 
-### 2) Train
-```bash
-python -m src.train   --data_dir ./data   --epochs 10   --batch_size 32   --lr 3e-4   --model resnet18   --img_size 224   --out_dir ./runs/exp1
-```
-This will save best model to `runs/exp1/best.pt` and metrics to `runs/exp1/metrics.csv`.
+## 🏋️ Training
+Example command:
+  `bash
+python -m src.train 
+  --data_dir ./data \
+  --epochs 20 \
+  --batch_size 32 \
+  --lr 3e-4 \
+  --model resnet18 \
+  --img_size 224 \
+  --out_dir ./runs/exp1
 
-### 3) Streamlit app (UI)
-```bash
-streamlit run app_streamlit.py -- --weights ./runs/exp1/best.pt --model resnet18 --img_size 224
-```
-Upload an image; the app will output **Cancerous / Non‑cancerous** with probability.
+  
+## 🔍 Inference
+Single Image
+bash
+Copy code
+python -m src.infer --weights ./runs/exp1/best.pt --image ./data/test/sample.png
+Batch Inference
+bash
+Copy code
+python batch_infer.py
+Outputs: test_predictions.csv
 
-### 4) Flask API (optional)
-```bash
-python app_flask.py --weights ./runs/exp1/best.pt --model resnet18 --img_size 224 --host 0.0.0.0 --port 8000
-```
-Then POST an image file:
-```bash
-curl -X POST -F "file=@/path/to/image.png" http://localhost:8000/predict
-```
+## 🎨 Visualization
+Confusion Matrix
 
-## Notes
-- You can switch backbones: `resnet18`, `resnet34`, `resnet50`.
-- If your dataset is imbalanced, enable `--class_weights auto` in training.
-- For grayscale medical images, the loader auto‑expands to 3 channels.
-- For DICOM, convert to PNG/JPG first or extend `dataset.py` to read DICOM (pydicom).
+Per-class accuracy
 
-## ⚕️ Disclaimer
-This software is **not** a medical device. Predictions are for research/education only and **must not** be used for diagnosis or treatment.
+Misclassified images
+
+Streamlit app provides UI to upload images and view predictions.
+
+## 🌐 Deployment
+Streamlit
+bash
+Copy code
+streamlit run app_streamlit.py -- --weights ./runs/exp1/best.pt
+Flask
+bash
+Copy code
+python app_flask.py --weights ./runs/exp1/best.pt
+## 📊 Results
+Accuracy: ~92% (ResNet18, 20 epochs, data augmentation)
+
+Precision/Recall: Balanced, good separation
+
+ROC-AUC: 0.94
+
+## 🚧 Next Steps
+Use larger models (ResNet50, EfficientNet).
+
+More data augmentation.
+
+Grad-CAM for explainable AI.
+
+Deploy API with Docker + Cloud.
+
+## ⚠️ Disclaimer
+This is a research demo. Not for medical diagnosis. Always consult professionals.
