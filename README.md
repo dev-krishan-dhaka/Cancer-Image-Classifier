@@ -17,20 +17,19 @@ The project also includes **Streamlit UI** for demo and a **Flask API** for inte
 ---
 
 ## 📂 Project Structure
-├── data/ # dataset (train/val/test split)
-├── runs/ # trained model checkpoints + results
-├── src/
-│ ├── train.py # training script
-│ ├── model.py # model creation
-│ ├── infer.py # single image inference
-│ └── utils.py # helper functions
-├── app_streamlit.py # Streamlit web app
-├── app_flask.py # Flask API
-├── requirements.txt # dependencies
-└── README.md # project description
+  data/ # dataset (train/val/test split)
+  runs/ # trained model checkpoints + results
+  src/
+    train.py # training script
+    model.py # model creation
+    infer.py # single image inference
+    utils.py # helper functions
+    app_streamlit.py # Streamlit web app
+    app_flask.py # Flask API
+    requirements.txt # dependencies
+    README.md # project description
 
-yaml
-Copy code
+
 
 ---
 
