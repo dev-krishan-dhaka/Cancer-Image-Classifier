@@ -101,7 +101,6 @@ Outputs: `test_predictions.csv` with predictions for all test images.
 - Per-class Accuracy Bar Chart
 - Misclassified Images Gallery
 
-(Available inside Streamlit app or by plotting separately.)
 
 ---
 
@@ -111,22 +110,10 @@ Outputs: `test_predictions.csv` with predictions for all test images.
 
 ```bash
 streamlit run app_streamlit.py -- --weights ./runs/exp1/best.pt --model resnet18 --img_size 224
+
+Live Demo--> https://cancer-image-classifier-idreqqnckjp4jhtldyzb4v.streamlit.app/
 ```
 
-Open the URL shown in your terminal (default `http://localhost:8501`) and upload an image.
-
-### Flask API
-
-```bash
-python app_flask.py --weights ./runs/exp1/best.pt --model resnet18 --img_size 224
-```
-
-Test with:
-```bash
-curl -X POST -F file=@./data/test/cancerous/sample.jpg http://127.0.0.1:8000/predict
-```
-
----
 
 ## 📊 Results
 
@@ -145,6 +132,3 @@ curl -X POST -F file=@./data/test/cancerous/sample.jpg http://127.0.0.1:8000/pre
 
 ---
 
-## ⚠️ Disclaimer
-
-This is a **research demo**. Not for medical diagnosis. Always consult professionals.
