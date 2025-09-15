@@ -111,8 +111,8 @@ Outputs: `test_predictions.csv` with predictions for all test images.
 ```bash
 streamlit run app_streamlit.py -- --weights ./runs/exp1/best.pt --model resnet18 --img_size 224
 
-Live Demo--> https://cancer-image-classifier-idreqqnckjp4jhtldyzb4v.streamlit.app/
 ```
+## Live Demo  --> https://cancer-image-classifier-idreqqnckjp4jhtldyzb4v.streamlit.app/
 
 
 ## 📊 Results
