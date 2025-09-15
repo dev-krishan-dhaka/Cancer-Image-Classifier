@@ -1,6 +1,6 @@
 # 🩺 Cancer Image Classification
 
-A deep learning project to classify medical images as **cancerous** or **non-cancerous** using **PyTorch + ResNet**.  
+A deep learning project to classify medical images as **cancerous** or **non-cancerous** using **PyTorch + ResNet**.    
 Includes a **Streamlit UI** for interactive demo and a **Flask API** for integration.
 
 ---
