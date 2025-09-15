@@ -7,7 +7,7 @@ Includes a **Streamlit UI** for interactive demo and a **Flask API** for integra
 
 ## 🚀 Features
 - Train CNN models (ResNet18/34/50) with transfer learning.
-- Evaluate with accuracy, precision, recall, F1-score, confusion matrix.
+- Evaluate with accuracy, precision, recall, F1-score, confusion matrix. 
 - Single-image inference (`src/infer.py`).
 - Batch inference on test set → CSV report.
 - Streamlit app for interactive demo.
